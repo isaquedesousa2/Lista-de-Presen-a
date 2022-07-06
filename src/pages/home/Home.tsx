@@ -2,16 +2,16 @@ import "./style.css";
 
 // Components
 import { Card } from "../../components/card/Card";
-
-//Hooks
-import { useFetch, ApiResponse } from "../../hooks/useFetch";
 import { useState } from "react";
 
-const url = "http://localhost:3000/list";
+interface User {
+  username: string;
+  time:string
+}
 
 export default function Home() {
-  const { data: users, httpConfig } = useFetch(url);
-  const [name, setName] = useState<string>();
+  const [data, setData] = useState<User[]>([]);
+  const [name, setName] = useState<string>('');
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -22,12 +22,11 @@ export default function Home() {
       second: "2-digit",
     });
 
-    const user = {
-      name: name,
-      time: time,
-    };
 
-    httpConfig(user as ApiResponse, "POST");
+    setData((actual) => [...actual,{
+      username: name,
+      time: time
+    }]);
 
     setName("");
   };
@@ -48,13 +47,14 @@ export default function Home() {
           name="name"
           placeholder="Digite seu nome"
           onChange={(e) => setName(e.target.value)}
+          autoComplete="off"
           required
         />
         <input type="submit" value="Adicionar" />
       </form>
 
-      {users.map((user) => (
-        <Card key={user.id} name={user.name} time={user.time} />
+      {data.map((user) => (
+        <Card key={user.time} name={user.username} time={user.time} />
       ))}
     </div>
   );
