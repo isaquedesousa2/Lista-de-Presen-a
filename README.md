@@ -8,6 +8,9 @@
     <a href="#autor">Autor</a>
 <p>
 
+![Lista-de-Presença-Google-Chrome-2022-07-06-17-03-50](https://user-images.githubusercontent.com/72584838/177639892-e44fbf17-9c5b-4ad9-a444-e4f450cad2be.gif)
+
+
 <h3 id="pre-requisitos">
 
 ## Pré-Requisitos
